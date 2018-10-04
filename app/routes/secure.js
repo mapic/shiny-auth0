@@ -33,7 +33,9 @@ proxy.on('proxyReq', function(proxyReq, req, res, options) {
 
 /* Proxy all requests */
 router.all(/.*/, ensureLoggedIn, function(req, res, next) {
-  proxy.web(req, res);
+  proxy.web(req, res, {}, function (e) {
+    console.log('proxy web error => ', e);
+  });
 });
 
 module.exports = router;
