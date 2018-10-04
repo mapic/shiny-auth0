@@ -15,7 +15,7 @@ var authenticateWithPromptNone = passport.authenticate('auth0', {
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.redirect('/reports/');
+  res.redirect('/secure/');
 });
 
 router.get('/login',
@@ -26,7 +26,7 @@ router.get('/login',
     return authenticateWithDefaultPrompt(req, res, next);
   },
   function (req, res) {
-    res.redirect('/reports/');
+    res.redirect('/secure/');
   });
 
 router.get('/logout', function(req, res){
@@ -58,7 +58,7 @@ router.get('/callback',
           if (err) {
             next(err);
           }
-          res.redirect(req.session.returnTo || '/reports/');
+          res.redirect(req.session.returnTo || '/secure/');
         });
       }
 

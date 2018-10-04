@@ -12,7 +12,7 @@ var Auth0Strategy = require('passport-auth0');
 dotenv.load();
 
 var routes = require('./routes/index');
-var reports = require('./routes/reports');
+var secure = require('./routes/secure');
 
 // Default everything to false
 process.env.CHECK_SESSION = process.env.CHECK_SESSION || 'false';
@@ -65,7 +65,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/reports/', reports);
+app.use('/secure/', secure);
 app.use('/', routes);
 
 app.use(bodyParser.json());
