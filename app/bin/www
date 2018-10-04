@@ -44,7 +44,10 @@ server.on('upgrade', function (req, socket, head) {
   req.url = req.url.substring(8);
   console.log('substring(8) req.url => ', req.url)
   console.log('proxying websockets...');
-  proxy.ws(req, socket, head);
+  proxy.ws(req, socket, head, function (e) {
+    // handle ws socket hang ups
+    console.log('ws error =>', e);
+  });
 });
 
 
