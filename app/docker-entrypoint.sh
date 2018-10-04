@@ -1,3 +1,3 @@
 #!/bin/bash
 npm i -y
-npm start
+forever --watch --debug --verbose ./bin/www

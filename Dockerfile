@@ -10,7 +10,7 @@ WORKDIR /usr/src/app
 COPY app/ ./
 
 # install tools
-RUN npm i -g npm-check-updates
+RUN npm install -g npm-check-updates forever
 
 # install package
-RUN npm i -y
+RUN npm install -y
