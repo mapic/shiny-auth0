@@ -23,6 +23,7 @@ var setIfExists = function(proxyReq, header, value){
 }
 
 proxy.on('proxyReq', function(proxyReq, req, res, options) {
+  console.log('user -->>', req.user);
   setIfExists(proxyReq, 'x-auth0-nickname', req.user._json.nickname);
   setIfExists(proxyReq, 'x-auth0-user_id', req.user._json.user_id);
   setIfExists(proxyReq, 'x-auth0-email', req.user._json.email);
@@ -33,9 +34,7 @@ proxy.on('proxyReq', function(proxyReq, req, res, options) {
 
 /* Proxy all requests */
 router.all(/.*/, ensureLoggedIn, function(req, res, next) {
-  proxy.web(req, res, {}, function (e) {
-    console.log('proxy web error => ', e);
-  });
+  proxy.web(req, res);
 });
 
 module.exports = router;

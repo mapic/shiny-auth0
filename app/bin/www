@@ -39,12 +39,15 @@ var proxy = httpProxy.createProxyServer({
     }
 });
 
+// handle errors
+proxy.on('error', function (e) {
+  console.log('http-proxy error:');
+  console.log(e);
+})
+
 server.on('upgrade', function (req, socket, head) {
   req.url = req.url.substring(8);
-  proxy.ws(req, socket, head, function (e) {
-    // handle ws socket hang ups
-    console.log('ws error =>', e);
-  });
+  proxy.ws(req, socket, head);
 });
 
 
