@@ -25,14 +25,15 @@ if (process.env.LOGOUT_FEDERATED === 'true') {
 
 // This will configure Passport to use Auth0
 var strategy = new Auth0Strategy({
-    domain:       process.env.AUTH0_DOMAIN,
-    clientID:     process.env.AUTH0_CLIENT_ID,
+    domain:       process.env.AUTH0_DOMAIN, // ngi-shiny.eu.auth0.com
+    clientID:     process.env.AUTH0_CLIENT_ID, // 
     clientSecret: process.env.AUTH0_CLIENT_SECRET,
-    callbackURL:  process.env.AUTH0_CALLBACK_URL
+    callbackURL:  process.env.AUTH0_CALLBACK_URL // https://cloud.ngi.no/callback
   }, function(accessToken, refreshToken, extraParams, profile, done) {
     // accessToken is the token to call Auth0 API (not needed in the most cases)
     // extraParams.id_token has the JSON Web Token
     // profile has all the information from the user
+    console.log('auth return:', profile)
     return done(null, profile);
   });
 
@@ -72,6 +73,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
+  console.log('caught 404!')
   var err = new Error('Not Found');
   err.status = 404;
   next(err);
