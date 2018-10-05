@@ -61,7 +61,7 @@ router.get('/callback',
           res.redirect(req.session.returnTo || '/secure/');
         });
       }
-      console.log('info:', info);
+      console.log('/callback -> info:', info);
       next(new Error(info));
     })(req, res, next);
   });
