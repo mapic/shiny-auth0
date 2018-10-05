@@ -1,1 +1,1 @@
-Please see https://github.com/mapic/shiny.docker-compose for usage instructions.
+Please see https://github.com/mapic/shiny for usage instructions.
