@@ -13,6 +13,7 @@ dotenv.load();
 
 var routes = require('./routes/index');
 var secure = require('./routes/secure');
+var editor = require('./routes/editor');
 
 // Default everything to false
 process.env.CHECK_SESSION = process.env.CHECK_SESSION || 'false';
@@ -66,6 +67,7 @@ app.use(passport.session());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/secure/', secure);
+app.use('/editor/', editor);
 app.use('/', routes);
 
 app.use(bodyParser.json());
