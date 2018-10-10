@@ -3,7 +3,7 @@ language: generic
 services:
   - docker
 install:
-  - docker build -t docker build -t mapic/shiny-auth0 . > /dev/null
+  - docker build -t mapic/shiny-auth0 . > /dev/null
 script:
   - docker run -d mapic/shiny-auth0 npm start
 
