@@ -9,6 +9,7 @@
     "start": "forever ./bin/www"
   },
   "dependencies": {
+    "async": "^2.6.1",
     "body-parser": "^1.18.3",
     "connect-ensure-login": "^0.1.1",
     "cookie-parser": "~1.4.3",
