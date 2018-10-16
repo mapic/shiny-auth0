@@ -35,7 +35,6 @@ var strategy = new Auth0Strategy({
     // accessToken is the token to call Auth0 API (not needed in the most cases)
     // extraParams.id_token has the JSON Web Token
     // profile has all the information from the user
-    console.log('auth return:', profile)
     return done(null, profile);
   });
 
@@ -77,8 +76,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  console.log('caught 404!');
-  console.log('req:', req);
   var err = new Error('Not Found');
   err.status = 404;
   next(err);

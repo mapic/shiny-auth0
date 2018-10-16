@@ -23,7 +23,6 @@ var setIfExists = function(proxyReq, header, value){
 }
 
 proxy.on('proxyReq', function(proxyReq, req, res, options) {
-  console.log('/secure/ user -->>', req.user);
   setIfExists(proxyReq, 'x-auth0-nickname', req.user._json.nickname);
   setIfExists(proxyReq, 'x-auth0-user_id', req.user._json.user_id);
   setIfExists(proxyReq, 'x-auth0-email', req.user._json.email);
