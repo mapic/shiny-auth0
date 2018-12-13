@@ -4,6 +4,8 @@ var httpProxy = require('http-proxy');
 var ensureLoggedIn = require('connect-ensure-login').ensureLoggedIn()
 var router = express.Router();
 
+var debug = true;
+
 var proxy = httpProxy.createProxyServer({
   target: {
       host: process.env.SHINY_HOST,
@@ -23,6 +25,7 @@ var setIfExists = function(proxyReq, header, value){
 }
 
 proxy.on('proxyReq', function(proxyReq, req, res, options) {
+  debug && console.log('# proxy.on("proxyReq") | proxyReq, options, user => ', proxyReq, options, req.user);
   setIfExists(proxyReq, 'x-auth0-nickname', req.user._json.nickname);
   setIfExists(proxyReq, 'x-auth0-user_id', req.user._json.user_id);
   setIfExists(proxyReq, 'x-auth0-email', req.user._json.email);
@@ -33,6 +36,7 @@ proxy.on('proxyReq', function(proxyReq, req, res, options) {
 
 /* Proxy all requests */
 router.all(/.*/, ensureLoggedIn, function(req, res, next) {
+  debug && console.log('# proxy all requests, /*/');
   proxy.web(req, res);
 });
 

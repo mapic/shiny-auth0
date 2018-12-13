@@ -6,8 +6,12 @@ var router = express.Router();
 var fs = require('fs');
 var async = require('async');
 
+var debug = true;
+
 /* Proxy all requests */
 router.all(/.*/, ensureLoggedIn, function(req, res, next) {
+
+  debug && console.log('# LOGS | router.all()')
 
   // log folder
   var log_folder = '../logs/';
