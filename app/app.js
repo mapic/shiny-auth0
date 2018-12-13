@@ -10,7 +10,7 @@ var passport = require('passport');
 var Auth0Strategy = require('passport-auth0');
 
 
-var debug = true;
+var debug = false;
 
 dotenv.load();
 

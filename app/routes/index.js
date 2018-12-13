@@ -6,7 +6,7 @@ var router = express.Router();
 
 var env = process.env;
 
-var debug = true;
+var debug = false;
 
 // This adds support for the current way to sso
 var authenticateWithDefaultPrompt = passport.authenticate('auth0', {});

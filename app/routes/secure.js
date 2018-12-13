@@ -4,7 +4,7 @@ var httpProxy = require('http-proxy');
 var ensureLoggedIn = require('connect-ensure-login').ensureLoggedIn()
 var router = express.Router();
 
-var debug = true;
+var debug = false;
 
 var proxy = httpProxy.createProxyServer({
   target: {

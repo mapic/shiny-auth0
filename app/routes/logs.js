@@ -6,7 +6,7 @@ var router = express.Router();
 var fs = require('fs');
 var async = require('async');
 
-var debug = true;
+var debug = false;
 
 /* Proxy all requests */
 router.all(/.*/, ensureLoggedIn, function(req, res, next) {
