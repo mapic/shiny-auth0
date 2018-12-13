@@ -54,13 +54,19 @@ var app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
+// app.set('trust proxy', 1);
 
 app.use(logger('dev'));
 app.use(cookieParser());
 app.use(session({
   secret: process.env.COOKIE_SECRET,
   resave: true,
-  saveUninitialized: true
+  saveUninitialized: true,
+  cookie : { 
+    // maxAge: (1 * 60 * 1000),
+    maxAge: (1000),
+    // secure : true
+  }
 }));
 app.use(passport.initialize());
 app.use(passport.session());
