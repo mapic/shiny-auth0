@@ -47,12 +47,12 @@ passport.use(strategy);
 
 // you can use this section to keep a smaller payload
 passport.serializeUser(function(user, done) {
-  debug && console.log('serializeUser');
+  debug && console.log('serializeUser', user);
   done(null, user);
 });
 
 passport.deserializeUser(function(user, done) {
-  debug && console.log('deserializeUser');
+  debug && console.log('deserializeUser', user);
   done(null, user);
 });
 
@@ -71,12 +71,29 @@ debug && console.log('COOKIE_SECRET = ', COOKIE_SECRET);
 app.use(session({
   // secret: process.env.COOKIE_SECRET,
   secret: COOKIE_SECRET,
-  resave: false,
-  saveUninitialized: true,
+  
+  // resave: false,
+  // saveUninitialized: true,
+  // saveUninitialized: false,
+
+  // saveUninitialized: false,
+  // resave: true,
+  rolling: true,
+
+  // saveUninitialized: false,
+  // resave: false,
+  // rolling: false,
+
   cookie : { 
-    maxAge: (1 * 60 * 1000),
+    // maxAge: (60 * 60 * 1000), // 1 hour
+    maxAge: (10 * 60 * 1000), // 10 minutes
+    // maxAge: (1 * 60 * 1000), // 1 minute
+    // maxAge: (1 * 1000), // 1 second
     // maxAge: (1000),
-    // secure : true
+    // maxAge: false,
+    // secure : true,
+    // unset : 'destroy',
+    // rolling : true,
   }
 }));
 app.use(passport.initialize());
@@ -115,13 +132,21 @@ if (app.get('env') === 'development') {
 
     // not verified email
     if (msg == '417') {
-      console.log('# ')
+      console.log('# 417')
       // return res.redirect('/login');
       return res.render('verifyEmail', {
         message: 'Please verify your email...',
         error: {}
       });
+    }
 
+    // not verified email
+    if (msg == '423') {
+      console.log('# 423')
+      return res.render('notwhitelist', {
+        message: 'You are not whitelisted',
+        error: {}
+      });
     }
 
     // all other errors
