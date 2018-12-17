@@ -7,6 +7,12 @@ html
         body {
             margin: 0;
             background: radial-gradient(#40404b, #111118) rgba(34,34,40,0.94);
+            height: 2000px;
+            /* width: 100%; */
+            top: 0;
+            left: 0;
+            position: inherit;
+            overflow: hidden;
         }
         #svg_4 {
             display: none;
@@ -16,14 +22,16 @@ html
         }
         #DIV_1 {
             display: table-cell;
-            height: 1098px;
+            height: 100%;
             text-rendering: optimizelegibility;
-            vertical-align: middle;
-            width: 1371px;
+            width: 1000px;
             perspective-origin: 685.5px 549px;
             transform-origin: 685.5px 549px;
             font: normal normal 400 normal 14px / normal "Avenir Next", Avenir, -apple-system, system-ui, Roboto, Helvetica, sans-serif;
             overflow: auto;
+            width: 100%;
+            position: absolute;
+            top: calc(50% - 150px);
         }/*#DIV_1*/
 
         #DIV_1:after {
@@ -47,7 +55,7 @@ html
             transform-origin: 150px 109.5px;
             border-radius: 5px 5px 5px 5px;
             font: normal normal 400 normal 14px / normal "Avenir Next", Avenir, -apple-system, system-ui, Roboto, Helvetica, sans-serif;
-            margin: 0px 535.5px;
+            margin: 0px auto;
             transition: transform 0.6s ease 0.5s, opacity 0.6s ease 0.5s, -webkit-transform 0.6s ease 0.5s;
         }/*#FORM_2*/
 
@@ -846,6 +854,8 @@ html
             font: normal normal 400 normal 13px / 23.4px "Avenir Next", Avenir, -apple-system, system-ui, Roboto, Helvetica, sans-serif;
             outline: rgba(0, 0, 0, 0.54) none 0px;
         }/*#SPAN_29:before, #BR_30:before*/
+
+
 
 
   body
