@@ -123,6 +123,7 @@ app.use(function(req, res, next) {
 // development error handler
 // will print stacktrace
 if (app.get('env') === 'development') {
+  console.log('env ==', app.get('env'));
   app.use(function(err, req, res, next) {
     debug && console.log('dev error handler', err);
     res.status(err.status || 500);
@@ -149,11 +150,15 @@ if (app.get('env') === 'development') {
       });
     }
 
-    // all other errors
-    res.render('error', {
-      message: msg,
-      error: {}
-    });
+    // // all other errors
+    // res.render('error', {
+    //   message: msg,
+    //   error: {}
+    // });
+
+    // redirect back to login page
+    res.redirect('https://cloud.ngi.no');
+
   });
 }
 
